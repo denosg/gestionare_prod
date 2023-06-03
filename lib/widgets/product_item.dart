@@ -12,7 +12,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(8),
       child: SizedBox(
         width: double.infinity,
         height: deviceSize.height / 7,

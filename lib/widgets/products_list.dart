@@ -7,7 +7,13 @@ class ProductsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => ProductItem(),
+      itemBuilder: (context, index) {
+        return ProductItem(
+          title: 'test',
+          dateTime: DateTime.now(),
+          amount: 100,
+        );
+      },
       itemCount: 1,
     );
   }
