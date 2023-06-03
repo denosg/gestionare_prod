@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '/theme/theme.dart';
+import '/screens/listings_overview_screen.dart';
+
 void main() {
   //Makes it so SystemChrome.setPreferredOrientations works
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,12 +19,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ,
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.lightTheme,
+      themeMode: ThemeMode.system,
+      home: ListingsOverviewScreen(),
+      routes: {},
     );
   }
 }
