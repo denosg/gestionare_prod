@@ -8,7 +8,9 @@ class ProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
+        // TODO: gonna build each product item based on the List<Listings> with each id from firebase
         return ProductItem(
+          id: 'asjkldas',
           title: 'test',
           dateTime: DateTime.now(),
           amount: 100,

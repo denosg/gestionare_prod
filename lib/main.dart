@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gestionare_prod/screens/add_listing_screen.dart';
+import 'package:gestionare_prod/screens/listing_details_screen.dart';
 import 'package:provider/provider.dart';
 
 import '/theme/theme.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       home: const ListingsOverviewScreen(),
       routes: {
         AddListingScreen.routeName: (context) => AddListingScreen(),
+        ListingDetailsScreen.routeName: (context) => ListingDetailsScreen(),
       },
     );
   }
