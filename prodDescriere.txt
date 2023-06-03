@@ -1,0 +1,8 @@
+investitie: profit: recuperat:
+
+titlu: 
+data cumpararii: DateTime.now sau pick a date
+FIECARE ITEM IN PARTE CUMPARAT (poza + pret cumparare + pret vanzare) - aici avem nevoie de un check, cand toate check-urile se termina, se arata ca este gata listing-ul
+Other details (transport + cacaturi)
+Total: (fiecare item in parte calculat suma (pret CUMPARARE))
+Total: (fiecare item in parte calculat suma (pret VANZARE))
