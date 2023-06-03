@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gestionare_prod/screens/add_listing_screen.dart';
 import 'package:provider/provider.dart';
 
 import '/theme/theme.dart';
@@ -24,8 +25,10 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.lightTheme,
       themeMode: ThemeMode.system,
-      home: ListingsOverviewScreen(),
-      routes: {},
+      home: const ListingsOverviewScreen(),
+      routes: {
+        AddListingScreen.routeName: (context) => AddListingScreen(),
+      },
     );
   }
 }

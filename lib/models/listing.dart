@@ -2,7 +2,7 @@ class Listing {
   final String id;
   final String title;
   final DateTime dateTime;
-  final int amount;
+  final double amount;
 
   Listing(
       {required this.id,
