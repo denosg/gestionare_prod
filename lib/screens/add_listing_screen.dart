@@ -4,6 +4,8 @@ import 'package:gestionare_prod/providers/listings_providers.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/new_item.dart';
+
 class AddListingScreen extends StatefulWidget {
   static const routeName = '/add-listing-screen';
 
@@ -90,6 +92,14 @@ class _AddListingScreenState extends State<AddListingScreen> {
     });
   }
 
+  // modal bottoom sheet when entering new item in the list
+  void _startAddNewItem(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => NewItem(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
@@ -142,7 +152,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
                       ),
                       // calendar picker for app
                       Container(
-                        color: Colors.red,
+                        // color: Colors.red,
                         height: 70,
                         child: Row(
                           children: [
@@ -169,12 +179,12 @@ class _AddListingScreenState extends State<AddListingScreen> {
                         // scrollable list of items
                         child: SingleChildScrollView(),
                       ),
-                      // TODO: insert sum money paid logic here ->
+                      // TODO: insert sum money paid logic here -> this will update with the new changes (setState) when adding a new item
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text('Total amount paid money: '),
                       ),
-                      // TODO: insert potential money logic here ->
+                      // TODO: insert potential money logic here -> this will update with the new changes (setState) when adding a new item
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text('Potential money win: '),
@@ -184,6 +194,11 @@ class _AddListingScreenState extends State<AddListingScreen> {
                 ),
               ),
             ),
+      floatingActionButton: ElevatedButton(
+        // pressing the button shows the modal bottom sheet for adding a new item
+        onPressed: () => _startAddNewItem(context),
+        child: const Text('Add new item'),
+      ),
     );
   }
 }
