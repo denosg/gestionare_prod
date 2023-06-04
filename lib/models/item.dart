@@ -5,6 +5,11 @@ class Item {
   final double priceMarket;
   final int amountOfItem;
 
-  Item(this.title, this.photoUrl, this.pricePaid, this.priceMarket,
-      this.amountOfItem);
+  Item({
+    required this.title,
+    required this.photoUrl,
+    required this.pricePaid,
+    required this.priceMarket,
+    required this.amountOfItem,
+  });
 }

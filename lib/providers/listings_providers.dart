@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,7 +21,45 @@ class ListingProviders with ChangeNotifier {
   }
 
   Future<void> addListing(Listing listing) async {
-    // TODO: implement adding to firebase database
+    // Send json data to server database
+    Uri url = Uri.parse(
+        'https://gestionare-produse-default-rtdb.europe-west1.firebasedatabase.app/listings.json');
+    final timeStamp = DateTime.now();
+    try {
+      //This registers as a 'TODO' function (loads at the end, async task)
+      //Waits for this operation to finish before going to the next lines of code
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'id': listing.id,
+          'title': listing.title,
+          'dateTime': timeStamp.toIso8601String(),
+          'amount': listing.amount,
+          'items': listing.itemList
+              .map((item) => {
+                    'title': item.title,
+                    'photoUrl': item.photoUrl,
+                    'pricePaid': item.pricePaid,
+                    'priceMarket': item.priceMarket,
+                    'amountOfItem': item.amountOfItem,
+                  })
+              .toList(),
+        }),
+      );
+      // adds the order locally in the memory
+      _listings.insert(
+          0,
+          Listing(
+            id: json.decode(response.body)['name'],
+            title: listing.title,
+            dateTime: timeStamp,
+            amount: listing.amount,
+            itemList: listing.itemList,
+          ));
+      notifyListeners();
+    } catch (e) {
+      throw e;
+    }
   }
 
   Future<void> deleteListing(String id) async {
