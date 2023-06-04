@@ -25,7 +25,7 @@ class ListingsOverviewScreen extends StatelessWidget {
       ),
       body: ProductsList(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: AddButton(),
+      floatingActionButton: const AddButton(),
     );
   }
 }

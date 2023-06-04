@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '/theme/theme.dart';
 import '/screens/listings_overview_screen.dart';
 
+//TODO: make photoUrl nullable
 void main() {
   //Makes it so SystemChrome.setPreferredOrientations works
   WidgetsFlutterBinding.ensureInitialized();

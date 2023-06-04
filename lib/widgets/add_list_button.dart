@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestionare_prod/screens/add_listing_screen.dart';
 
 class AddButton extends StatelessWidget {
   const AddButton({super.key});
@@ -15,7 +16,9 @@ class AddButton extends StatelessWidget {
       child: IconButton(
         splashRadius: 40,
         // TODO: go to add new listing screen
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(AddListingScreen.routeName);
+        },
         icon: const Icon(Icons.add),
       ),
     );

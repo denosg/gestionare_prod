@@ -20,6 +20,7 @@ class ListingProviders with ChangeNotifier {
     // TODO: implement fetching from firebase database
   }
 
+  // this will be used in the add listing screen where we will get the specifi listing
   Future<void> addListing(Listing listing) async {
     // Send json data to server database
     Uri url = Uri.parse(
