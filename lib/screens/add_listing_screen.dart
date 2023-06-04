@@ -95,6 +95,9 @@ class _AddListingScreenState extends State<AddListingScreen> {
   // modal bottoom sheet when entering new item in the list
   void _startAddNewItem(BuildContext context) {
     showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       context: context,
       builder: (context) => NewItem(),
     );
@@ -177,7 +180,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
                         color: Colors.green,
                         height: (deviceSize.height - kToolbarHeight) / 2,
                         // scrollable list of items
-                        child: SingleChildScrollView(),
+                        // child: ListView.builder(itemBuilder: ),
                       ),
                       // TODO: insert sum money paid logic here -> this will update with the new changes (setState) when adding a new item
                       Padding(
