@@ -17,38 +17,69 @@ class _NewItemState extends State<NewItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    return Container(
+      padding: EdgeInsets.only(
+          top: 10,
+          left: 10,
+          right: 10,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 10),
       child: Form(
         key: _modalFormKey,
         child: ListView(
           children: [
             // title of particular item
-            TextFormField(
-              autocorrect: false,
-              decoration: InputDecoration(
-                  labelText: 'Title',
-                  labelStyle: TextStyle(color: Theme.of(context).accentColor)),
-              textInputAction: TextInputAction.next,
-              autofocus: true,
-              // gets the introduced string
-              onSaved: (title) {
-                if (title != null) {
-                  _tempItem = Item(
-                    title: title,
-                    photoUrl: _tempItem.photoUrl,
-                    pricePaid: _tempItem.pricePaid,
-                    priceMarket: _tempItem.priceMarket,
-                    amountOfItem: _tempItem.amountOfItem,
-                  );
-                }
-              },
-              validator: (value) {
-                if (value == '') {
-                  return 'Please provide a value';
-                }
-                return null;
-              },
+            Container(
+              width: width * 0.8,
+              height: height * 0.07,
+              padding: EdgeInsets.all(width * 0.03),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[300]),
+              child: Center(
+                child: Row(
+                  children: <Widget>[
+                    const Icon(
+                      Icons.title,
+                      color: Colors.black54,
+                    ),
+                    SizedBox(
+                      width: width * 0.04,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        autocorrect: false,
+                        decoration: const InputDecoration.collapsed(
+                          hintText: 'Item title',
+                          hintStyle: TextStyle(color: Colors.black54),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        autofocus: true,
+                        // gets the introduced string
+                        onSaved: (title) {
+                          if (title != null) {
+                            _tempItem = Item(
+                              title: title,
+                              photoUrl: _tempItem.photoUrl,
+                              pricePaid: _tempItem.pricePaid,
+                              priceMarket: _tempItem.priceMarket,
+                              amountOfItem: _tempItem.amountOfItem,
+                            );
+                          }
+                        },
+                        validator: (value) {
+                          if (value == '') {
+                            return 'Please provide a value';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             // image on the left + image url on the right
             Row(
