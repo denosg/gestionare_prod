@@ -5,13 +5,27 @@ class MyTextForm extends StatefulWidget {
   final String hintText;
   final Item tempItem;
   final Function(Item) onSave;
+  final bool isTitle;
+  final bool isPhotoUrl;
+  final bool isPricePaid;
+  final bool isPriceMarket;
+  final bool isAmountOfItem;
 
   const MyTextForm(
-      {required this.hintText, required this.tempItem, required this.onSave});
+      {required this.hintText,
+      required this.tempItem,
+      required this.onSave,
+      required this.isTitle,
+      required this.isPhotoUrl,
+      required this.isPricePaid,
+      required this.isPriceMarket,
+      required this.isAmountOfItem});
 
   @override
   State<MyTextForm> createState() => _MyTextFormState();
 }
+
+//TODO: add logic for getting the info regarding the type of text field that is being used and use that logic here
 
 class _MyTextFormState extends State<MyTextForm> {
   @override
@@ -45,8 +59,8 @@ class _MyTextFormState extends State<MyTextForm> {
                 textInputAction: TextInputAction.next,
                 autofocus: true,
                 // gets the introduced string
-                onSaved: (title) {
-                  if (title != null) {
+                onSaved: (enteredString) {
+                  if (enteredString != null) {
                     Item updatedItem = Item(
                       title: title,
                       photoUrl: widget.tempItem.photoUrl,
