@@ -12,4 +12,9 @@ class Item {
     required this.priceMarket,
     required this.amountOfItem,
   });
+
+  @override
+  String toString() {
+    return 'Item: title: $title, photoUrl: $photoUrl, pricePaid: $pricePaid, priceMarket: $priceMarket, amountOfItem: $amountOfItem';
+  }
 }

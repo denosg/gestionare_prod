@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/item.dart';
 
 class MyTextForm extends StatefulWidget {
+  final String hintText;
   final Item tempItem;
   final Function(Item) onSave;
 
-  const MyTextForm({required this.tempItem, required this.onSave});
+  const MyTextForm(
+      {required this.hintText, required this.tempItem, required this.onSave});
 
   @override
   State<MyTextForm> createState() => _MyTextFormState();
@@ -36,9 +38,9 @@ class _MyTextFormState extends State<MyTextForm> {
             Expanded(
               child: TextFormField(
                 autocorrect: false,
-                decoration: const InputDecoration.collapsed(
-                  hintText: 'Item title',
-                  hintStyle: TextStyle(color: Colors.black54),
+                decoration: InputDecoration.collapsed(
+                  hintText: widget.hintText,
+                  hintStyle: const TextStyle(color: Colors.black54),
                 ),
                 textInputAction: TextInputAction.next,
                 autofocus: true,

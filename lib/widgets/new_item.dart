@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/item.dart';
+import 'package:gestionare_prod/widgets/my_text_form.dart';
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -14,6 +15,14 @@ class _NewItemState extends State<NewItem> {
 
   var _tempItem = Item(
       title: '', photoUrl: '', pricePaid: 0, priceMarket: 0, amountOfItem: 0);
+
+  void saveStateOfTextField(Item updatedItem) {
+    setState(() {
+      _tempItem =
+          updatedItem; // Update _tempItem with the updatedItem from MyTextForm
+    });
+    print("data of item: $_tempItem");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,56 +40,10 @@ class _NewItemState extends State<NewItem> {
         child: ListView(
           children: [
             // title of particular item
-            Container(
-              width: width * 0.8,
-              height: height * 0.07,
-              padding: EdgeInsets.all(width * 0.03),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[300]),
-              child: Center(
-                child: Row(
-                  children: <Widget>[
-                    const Icon(
-                      Icons.title,
-                      color: Colors.black54,
-                    ),
-                    SizedBox(
-                      width: width * 0.04,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        autocorrect: false,
-                        decoration: const InputDecoration.collapsed(
-                          hintText: 'Item title',
-                          hintStyle: TextStyle(color: Colors.black54),
-                        ),
-                        textInputAction: TextInputAction.next,
-                        autofocus: true,
-                        // gets the introduced string
-                        onSaved: (title) {
-                          if (title != null) {
-                            _tempItem = Item(
-                              title: title,
-                              photoUrl: _tempItem.photoUrl,
-                              pricePaid: _tempItem.pricePaid,
-                              priceMarket: _tempItem.priceMarket,
-                              amountOfItem: _tempItem.amountOfItem,
-                            );
-                          }
-                        },
-                        validator: (value) {
-                          if (value == '') {
-                            return 'Please provide a value';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            MyTextForm(
+                hintText: 'Item title',
+                tempItem: _tempItem,
+                onSave: saveStateOfTextField),
             // image on the left + image url on the right
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
