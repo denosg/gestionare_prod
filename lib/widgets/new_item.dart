@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/item.dart';
+import 'package:gestionare_prod/widgets/textForms/amount_item_form.dart';
 import 'package:gestionare_prod/widgets/textForms/image_url_form.dart';
+import 'package:gestionare_prod/widgets/textForms/price_market_form.dart';
 import 'package:gestionare_prod/widgets/textForms/price_paid_form.dart';
 import 'package:gestionare_prod/widgets/textForms/title_form.dart';
 
@@ -45,7 +47,7 @@ class _NewItemState extends State<NewItem> {
             TitleForm(tempItem: _tempItem, onSave: saveStateOfTextField),
             // image on the left + image url on the right
             Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   width: 100,
@@ -55,7 +57,7 @@ class _NewItemState extends State<NewItem> {
                       ? const Text('Enter a Url')
                       : ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.network(_imageUrlController!.text),
+                          // child: Image.network(_imageUrlController!.text),
                         ),
                 ),
                 Expanded(
@@ -65,57 +67,21 @@ class _NewItemState extends State<NewItem> {
               ],
             ),
             // price paid for the item / price that we will put the item for
-            Container(
-              width: double.infinity,
-              height: 70,
-              // color: Colors.red,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // price paid for the item
-                  PricePaidForm(
-                      tempItem: _tempItem, onSave: saveStateOfTextField),
-                  // price that we will put the item for on the market
-                  Expanded(
-                    child: TextFormField(
-                      autocorrect: false,
-                      decoration: const InputDecoration(
-                        labelText: 'Price Market',
-                      ),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      onSaved: (priceMarketStr) {
-                        if (priceMarketStr != null) {
-                          final priceMarket = double.parse(priceMarketStr);
-                          _tempItem = Item(
-                              title: _tempItem.title,
-                              photoUrl: _tempItem.photoUrl,
-                              pricePaid: _tempItem.pricePaid,
-                              priceMarket: priceMarket,
-                              amountOfItem: _tempItem.amountOfItem);
-                        }
-                      },
-                      validator: (value) {
-                        if (value == '') {
-                          return 'Please enter the monehy';
-                        }
-                        if (value != null) {
-                          if (int.tryParse(value) == null) {
-                            return 'Please enter a valid number';
-                          }
-                        }
-                        if (value != null) {
-                          if (int.parse(value) <= 0) {
-                            return 'Please enter a number > 0';
-                          }
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            )
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                // price paid for the item
+                PricePaidForm(
+                    tempItem: _tempItem, onSave: saveStateOfTextField),
+                // price that we will put the item for on the market
+                PriceMarketForm(
+                    tempItem: _tempItem, onSave: saveStateOfTextField),
+              ],
+            ),
+            // amount of the item
+            const SizedBox(height: 20),
+            AmountItemForm(tempItem: _tempItem, onSave: saveStateOfTextField),
           ],
         ),
       ),
