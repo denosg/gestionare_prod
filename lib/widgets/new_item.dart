@@ -45,10 +45,8 @@ class _NewItemState extends State<NewItem> {
               tempItem: _tempItem,
               onSave: saveStateOfTextField,
               isTitle: true,
-              isAmountOfItem: false,
               isPhotoUrl: false,
-              isPriceMarket: false,
-              isPricePaid: false,
+              textInputType: TextInputType.text,
             ),
             // image on the left + image url on the right
             Row(

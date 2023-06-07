@@ -7,19 +7,16 @@ class MyTextForm extends StatefulWidget {
   final Function(Item) onSave;
   final bool isTitle;
   final bool isPhotoUrl;
-  final bool isPricePaid;
-  final bool isPriceMarket;
-  final bool isAmountOfItem;
+  final TextInputType textInputType;
 
-  const MyTextForm(
-      {required this.hintText,
-      required this.tempItem,
-      required this.onSave,
-      required this.isTitle,
-      required this.isPhotoUrl,
-      required this.isPricePaid,
-      required this.isPriceMarket,
-      required this.isAmountOfItem});
+  const MyTextForm({
+    required this.hintText,
+    required this.tempItem,
+    required this.onSave,
+    required this.isTitle,
+    required this.isPhotoUrl,
+    required this.textInputType,
+  });
 
   @override
   State<MyTextForm> createState() => _MyTextFormState();
@@ -58,6 +55,7 @@ class _MyTextFormState extends State<MyTextForm> {
                 ),
                 textInputAction: TextInputAction.next,
                 autofocus: true,
+                keyboardType: widget.textInputType,
                 // gets the introduced string
                 onSaved: (enteredString) {
                   if (enteredString != null) {
@@ -78,33 +76,6 @@ class _MyTextFormState extends State<MyTextForm> {
                         pricePaid: widget.tempItem.pricePaid,
                         priceMarket: widget.tempItem.priceMarket,
                         amountOfItem: widget.tempItem.amountOfItem,
-                      );
-                    }
-                    if (widget.isPricePaid) {
-                      updatedItem = Item(
-                        title: widget.tempItem.title,
-                        photoUrl: widget.tempItem.photoUrl,
-                        pricePaid: double.parse(enteredString),
-                        priceMarket: widget.tempItem.priceMarket,
-                        amountOfItem: widget.tempItem.amountOfItem,
-                      );
-                    }
-                    if (widget.isPriceMarket) {
-                      updatedItem = Item(
-                        title: widget.tempItem.title,
-                        photoUrl: widget.tempItem.photoUrl,
-                        pricePaid: widget.tempItem.pricePaid,
-                        priceMarket: double.parse(enteredString),
-                        amountOfItem: widget.tempItem.amountOfItem,
-                      );
-                    }
-                    if (widget.isAmountOfItem) {
-                      updatedItem = Item(
-                        title: widget.tempItem.title,
-                        photoUrl: widget.tempItem.photoUrl,
-                        pricePaid: widget.tempItem.pricePaid,
-                        priceMarket: widget.tempItem.priceMarket,
-                        amountOfItem: int.parse(enteredString),
                       );
                     }
                     widget.onSave(updatedItem!);
