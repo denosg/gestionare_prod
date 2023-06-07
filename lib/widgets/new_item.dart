@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/item.dart';
-import 'package:gestionare_prod/widgets/my_text_form.dart';
+import 'package:gestionare_prod/widgets/textForms/title_form.dart';
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -40,14 +40,7 @@ class _NewItemState extends State<NewItem> {
         child: ListView(
           children: [
             // title of particular item
-            MyTextForm(
-              hintText: 'Item title',
-              tempItem: _tempItem,
-              onSave: saveStateOfTextField,
-              isTitle: true,
-              isPhotoUrl: false,
-              textInputType: TextInputType.text,
-            ),
+            TitleForm(tempItem: _tempItem, onSave: saveStateOfTextField),
             // image on the left + image url on the right
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
