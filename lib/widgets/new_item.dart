@@ -41,9 +41,15 @@ class _NewItemState extends State<NewItem> {
           children: [
             // title of particular item
             MyTextForm(
-                hintText: 'Item title',
-                tempItem: _tempItem,
-                onSave: saveStateOfTextField),
+              hintText: 'Item title',
+              tempItem: _tempItem,
+              onSave: saveStateOfTextField,
+              isTitle: true,
+              isAmountOfItem: false,
+              isPhotoUrl: false,
+              isPriceMarket: false,
+              isPricePaid: false,
+            ),
             // image on the left + image url on the right
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,

@@ -61,14 +61,53 @@ class _MyTextFormState extends State<MyTextForm> {
                 // gets the introduced string
                 onSaved: (enteredString) {
                   if (enteredString != null) {
-                    Item updatedItem = Item(
-                      title: title,
-                      photoUrl: widget.tempItem.photoUrl,
-                      pricePaid: widget.tempItem.pricePaid,
-                      priceMarket: widget.tempItem.priceMarket,
-                      amountOfItem: widget.tempItem.amountOfItem,
-                    );
-                    widget.onSave(updatedItem);
+                    Item? updatedItem;
+                    if (widget.isTitle) {
+                      updatedItem = Item(
+                        title: enteredString,
+                        photoUrl: widget.tempItem.photoUrl,
+                        pricePaid: widget.tempItem.pricePaid,
+                        priceMarket: widget.tempItem.priceMarket,
+                        amountOfItem: widget.tempItem.amountOfItem,
+                      );
+                    }
+                    if (widget.isPhotoUrl) {
+                      updatedItem = Item(
+                        title: widget.tempItem.title,
+                        photoUrl: enteredString,
+                        pricePaid: widget.tempItem.pricePaid,
+                        priceMarket: widget.tempItem.priceMarket,
+                        amountOfItem: widget.tempItem.amountOfItem,
+                      );
+                    }
+                    if (widget.isPricePaid) {
+                      updatedItem = Item(
+                        title: widget.tempItem.title,
+                        photoUrl: widget.tempItem.photoUrl,
+                        pricePaid: double.parse(enteredString),
+                        priceMarket: widget.tempItem.priceMarket,
+                        amountOfItem: widget.tempItem.amountOfItem,
+                      );
+                    }
+                    if (widget.isPriceMarket) {
+                      updatedItem = Item(
+                        title: widget.tempItem.title,
+                        photoUrl: widget.tempItem.photoUrl,
+                        pricePaid: widget.tempItem.pricePaid,
+                        priceMarket: double.parse(enteredString),
+                        amountOfItem: widget.tempItem.amountOfItem,
+                      );
+                    }
+                    if (widget.isAmountOfItem) {
+                      updatedItem = Item(
+                        title: widget.tempItem.title,
+                        photoUrl: widget.tempItem.photoUrl,
+                        pricePaid: widget.tempItem.pricePaid,
+                        priceMarket: widget.tempItem.priceMarket,
+                        amountOfItem: int.parse(enteredString),
+                      );
+                    }
+                    widget.onSave(updatedItem!);
                   }
                 },
                 validator: (value) {
