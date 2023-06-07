@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../models/item.dart';
 
+// TODO: Ask forum how to fix issue
+
 class AmountItemForm extends StatefulWidget {
   final Item tempItem;
   final Function(Item) onSave;
@@ -13,6 +15,7 @@ class AmountItemForm extends StatefulWidget {
 }
 
 class _AmountItemFormState extends State<AmountItemForm> {
+  // ignore: prefer_final_fields
   late TextEditingController _textEditingController = TextEditingController();
   int _amount = 0;
 
@@ -68,9 +71,9 @@ class _AmountItemFormState extends State<AmountItemForm> {
               child: TextFormField(
                 controller: _textEditingController,
                 textAlign: TextAlign.center,
-                decoration: InputDecoration.collapsed(
-                  hintText: '$_amount',
-                  hintStyle: const TextStyle(color: Colors.black54),
+                decoration: const InputDecoration.collapsed(
+                  hintText: '0',
+                  hintStyle: TextStyle(color: Colors.black54),
                 ),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
