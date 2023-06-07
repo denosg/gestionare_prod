@@ -13,12 +13,26 @@ class AmountItemForm extends StatefulWidget {
 }
 
 class _AmountItemFormState extends State<AmountItemForm> {
+  late TextEditingController _textEditingController = TextEditingController();
   int _amount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController.text = _amount.toString();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
 
   void _decrement() {
     if (_amount > 0) {
       setState(() {
         _amount--;
+        _textEditingController.text = _amount.toString();
       });
     }
   }
@@ -26,6 +40,7 @@ class _AmountItemFormState extends State<AmountItemForm> {
   void _increment() {
     setState(() {
       _amount++;
+      _textEditingController.text = _amount.toString();
     });
   }
 
@@ -49,41 +64,44 @@ class _AmountItemFormState extends State<AmountItemForm> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6),
                 color: Colors.grey[300]),
-            child: TextFormField(
-              textAlign: TextAlign.center,
-              decoration: InputDecoration.collapsed(
-                hintText: '$_amount',
-                hintStyle: const TextStyle(color: Colors.black54),
-              ),
-              keyboardType: TextInputType.number,
-              onChanged: (value) {
-                setState(() {
-                  _amount = int.tryParse(value) ?? 0;
-                });
-              },
-              onSaved: (enteredString) {
-                if (enteredString != null) {
-                  Item updatedItem = Item(
-                    title: widget.tempItem.title,
-                    photoUrl: widget.tempItem.photoUrl,
-                    pricePaid: widget.tempItem.pricePaid,
-                    priceMarket: widget.tempItem.priceMarket,
-                    amountOfItem: int.parse(enteredString),
-                  );
+            child: Center(
+              child: TextFormField(
+                controller: _textEditingController,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration.collapsed(
+                  hintText: '$_amount',
+                  hintStyle: const TextStyle(color: Colors.black54),
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(() {
+                    _amount = int.tryParse(value) ?? 0;
+                  });
+                },
+                onSaved: (enteredString) {
+                  if (enteredString != null) {
+                    Item updatedItem = Item(
+                      title: widget.tempItem.title,
+                      photoUrl: widget.tempItem.photoUrl,
+                      pricePaid: widget.tempItem.pricePaid,
+                      priceMarket: widget.tempItem.priceMarket,
+                      amountOfItem: int.parse(enteredString),
+                    );
 
-                  widget.onSave(updatedItem);
-                }
-              },
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a value';
-                }
-                final number = int.tryParse(value);
-                if (number == null || number < 0) {
-                  return 'Invalid number';
-                }
-                return null;
-              },
+                    widget.onSave(updatedItem);
+                  }
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a value';
+                  }
+                  final number = int.tryParse(value);
+                  if (number == null || number < 0) {
+                    return 'Invalid number';
+                  }
+                  return null;
+                },
+              ),
             ),
           ),
         ),
