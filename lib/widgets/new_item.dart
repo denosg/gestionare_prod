@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/item.dart';
 import 'package:gestionare_prod/widgets/textForms/image_url_form.dart';
+import 'package:gestionare_prod/widgets/textForms/price_paid_form.dart';
 import 'package:gestionare_prod/widgets/textForms/title_form.dart';
 
 class NewItem extends StatefulWidget {
@@ -69,45 +70,11 @@ class _NewItemState extends State<NewItem> {
               height: 70,
               // color: Colors.red,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   // price paid for the item
-                  Expanded(
-                    child: TextFormField(
-                      autocorrect: false,
-                      decoration: const InputDecoration(
-                        labelText: 'Price Paid',
-                      ),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      onSaved: (pricePaidStr) {
-                        if (pricePaidStr != null) {
-                          final pricePaid = double.parse(pricePaidStr);
-                          _tempItem = Item(
-                              title: _tempItem.title,
-                              photoUrl: _tempItem.photoUrl,
-                              pricePaid: pricePaid,
-                              priceMarket: _tempItem.priceMarket,
-                              amountOfItem: _tempItem.amountOfItem);
-                        }
-                      },
-                      validator: (value) {
-                        if (value == '') {
-                          return 'Please enter the monehy';
-                        }
-                        if (value != null) {
-                          if (int.tryParse(value) == null) {
-                            return 'Please enter a valid number';
-                          }
-                        }
-                        if (value != null) {
-                          if (int.parse(value) <= 0) {
-                            return 'Please enter a number > 0';
-                          }
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
+                  PricePaidForm(
+                      tempItem: _tempItem, onSave: saveStateOfTextField),
                   // price that we will put the item for on the market
                   Expanded(
                     child: TextFormField(
