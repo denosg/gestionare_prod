@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/item.dart';
+import 'package:gestionare_prod/widgets/textForms/image_url_form.dart';
 import 'package:gestionare_prod/widgets/textForms/title_form.dart';
 
 class NewItem extends StatefulWidget {
@@ -57,40 +58,8 @@ class _NewItemState extends State<NewItem> {
                         ),
                 ),
                 Expanded(
-                  child: TextFormField(
-                    decoration: const InputDecoration(label: Text('Image Url')),
-                    keyboardType: TextInputType.url,
-                    textInputAction: TextInputAction.done,
-                    controller: _imageUrlController,
-                    // _saveForm for individual item that will be added in the Listing class
-                    onSaved: (imageUrl) {
-                      if (imageUrl != null) {
-                        _tempItem = Item(
-                          title: _tempItem.title,
-                          photoUrl: imageUrl,
-                          pricePaid: _tempItem.pricePaid,
-                          priceMarket: _tempItem.priceMarket,
-                          amountOfItem: _tempItem.amountOfItem,
-                        );
-                      }
-                    },
-                    validator: (value) {
-                      if (value != null) {
-                        if (!value.startsWith('http') &&
-                            !value.startsWith('https')) {
-                          return 'Please enter a valid URL';
-                        }
-                      }
-                      if (value != null) {
-                        if (!value.endsWith('.png') &&
-                            !value.endsWith('.jpg') &&
-                            !value.endsWith('.jpeg')) {
-                          return 'Please enter a valid image URL';
-                        }
-                      }
-                      return null;
-                    },
-                  ),
+                  child: ImageUrlForm(
+                      tempItem: _tempItem, onSave: saveStateOfTextField),
                 ),
               ],
             ),
