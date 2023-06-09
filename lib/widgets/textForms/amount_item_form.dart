@@ -90,7 +90,6 @@ class _AmountItemFormState extends State<AmountItemForm> {
                       priceMarket: widget.tempItem.priceMarket,
                       amountOfItem: int.parse(enteredString),
                     );
-
                     widget.onSave(updatedItem);
                   }
                 },

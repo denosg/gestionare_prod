@@ -47,7 +47,7 @@ class _PriceMarketFormState extends State<PriceMarketForm> {
                 onSaved: (enteredString) {
                   if (enteredString != null) {
                     Item updatedItem = Item(
-                      title: enteredString,
+                      title: widget.tempItem.title,
                       photoUrl: widget.tempItem.photoUrl,
                       pricePaid: widget.tempItem.pricePaid,
                       priceMarket: double.parse(enteredString),

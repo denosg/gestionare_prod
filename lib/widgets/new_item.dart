@@ -25,7 +25,20 @@ class _NewItemState extends State<NewItem> {
       _tempItem =
           updatedItem; // Update _tempItem with the updatedItem from MyTextForm
     });
-    print("data of item: $_tempItem");
+  }
+
+  Future<void> _saveForm() async {
+    final isValid = _modalFormKey.currentState?.validate();
+    if (isValid == false || isValid == null) {
+      return;
+    }
+    _modalFormKey.currentState?.save();
+    try {
+      print("data of item: $_tempItem");
+    } catch (e) {
+      throw e;
+    }
+    Navigator.of(context).pop();
   }
 
   @override
@@ -84,6 +97,11 @@ class _NewItemState extends State<NewItem> {
             AmountItemForm(tempItem: _tempItem, onSave: saveStateOfTextField),
             // Save button
             const SizedBox(height: 20),
+            ElevatedButton(
+              // TODO: save info logic ->
+              onPressed: _saveForm,
+              child: const Text('Save'),
+            ),
           ],
         ),
       ),
