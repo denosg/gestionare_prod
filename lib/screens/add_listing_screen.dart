@@ -55,7 +55,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
       await Provider.of<ListingProviders>(context, listen: false)
           .addListing(_tempListing);
     } catch (error) {
-      await showDialog<Null>(
+      await showDialog<void>(
           context: context,
           builder: (ctx) => AlertDialog(
                 title: const Text('An error occured'),
@@ -99,7 +99,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
         borderRadius: BorderRadius.circular(10.0),
       ),
       context: context,
-      builder: (context) => NewItem(),
+      builder: (context) => const NewItem(),
     );
   }
 

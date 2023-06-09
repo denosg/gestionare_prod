@@ -45,7 +45,7 @@ class _TitleFormState extends State<TitleForm> {
                 autofocus: true,
                 // gets the introduced string
                 onChanged: (enteredString) {
-                  if (enteredString != null) {
+                  if (enteredString != '') {
                     Item updatedItem = Item(
                       title: enteredString,
                       photoUrl: widget.tempItem.photoUrl,

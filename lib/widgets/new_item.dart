@@ -34,6 +34,7 @@ class _NewItemState extends State<NewItem> {
     }
     _modalFormKey.currentState?.save();
     try {
+      //TODO-> Insert Item in the corresponding listing
       print("data of item: $_tempItem");
     } catch (e) {
       throw e;
@@ -54,6 +55,7 @@ class _NewItemState extends State<NewItem> {
           bottom: MediaQuery.of(context).viewInsets.bottom + 10),
       child: Form(
         key: _modalFormKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: ListView(
           children: [
             // title of particular item
@@ -98,7 +100,6 @@ class _NewItemState extends State<NewItem> {
             // Save button
             const SizedBox(height: 20),
             ElevatedButton(
-              // TODO: save info logic ->
               onPressed: _saveForm,
               child: const Text('Save'),
             ),

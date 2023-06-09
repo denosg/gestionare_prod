@@ -45,7 +45,7 @@ class _ImageUrlFormState extends State<ImageUrlForm> {
                 textInputAction: TextInputAction.next,
                 // gets the introduced string
                 onChanged: (enteredString) {
-                  if (enteredString != null) {
+                  if (enteredString != '') {
                     Item updatedItem = Item(
                       title: widget.tempItem.title,
                       photoUrl: enteredString,

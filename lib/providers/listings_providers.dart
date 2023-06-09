@@ -59,7 +59,7 @@ class ListingProviders with ChangeNotifier {
           ));
       notifyListeners();
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
