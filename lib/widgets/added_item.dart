@@ -23,8 +23,8 @@ class AddedItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              height: height * 0.05,
-              width: height * 0.05,
+              height: height * 0.07,
+              width: height * 0.07,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: itemInfo.photoUrl == ''
@@ -32,12 +32,20 @@ class AddedItem extends StatelessWidget {
                     : Image.network(itemInfo.photoUrl),
               ),
             ),
-            Column(
-              children: [
-                Text(itemInfo.title),
-                Text('Price paid: ${itemInfo.pricePaid}'),
-                Text('Price market: ${itemInfo.priceMarket}'),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    itemInfo.title,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text('Price paid: ${itemInfo.pricePaid}'),
+                  Text('Price market: ${itemInfo.priceMarket}'),
+                ],
+              ),
             ),
             Text(itemInfo.amountOfItem.toString()),
           ],
