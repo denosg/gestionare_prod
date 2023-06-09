@@ -82,6 +82,8 @@ class _NewItemState extends State<NewItem> {
             // amount of the item
             const SizedBox(height: 20),
             AmountItemForm(tempItem: _tempItem, onSave: saveStateOfTextField),
+            // Save button
+            const SizedBox(height: 20),
           ],
         ),
       ),
