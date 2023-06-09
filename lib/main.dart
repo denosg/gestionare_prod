@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 import '/theme/theme.dart';
 import '/screens/listings_overview_screen.dart';
 
-//TODO: make photoUrl nullable
+//TODO: make so user adds photo from gallery instead of using Image.network()
+//TODO: make so when long pressing on the item, it shows popup to delete item
 void main() {
   //Makes it so SystemChrome.setPreferredOrientations works
   WidgetsFlutterBinding.ensureInitialized();
