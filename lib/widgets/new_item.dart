@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/item.dart';
+import 'package:gestionare_prod/providers/items_list.dart';
 import 'package:gestionare_prod/widgets/textForms/amount_item_form.dart';
 import 'package:gestionare_prod/widgets/textForms/image_url_form.dart';
 import 'package:gestionare_prod/widgets/textForms/price_market_form.dart';
 import 'package:gestionare_prod/widgets/textForms/price_paid_form.dart';
 import 'package:gestionare_prod/widgets/textForms/title_form.dart';
+import 'package:provider/provider.dart';
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -34,8 +36,8 @@ class _NewItemState extends State<NewItem> {
     }
     _modalFormKey.currentState?.save();
     try {
-      //TODO-> Insert Item in the corresponding listing
-      print("data of item: $_tempItem");
+      Provider.of<ItemListProvider>(context, listen: false)
+          .addItemInList(_tempItem);
     } catch (e) {
       throw e;
     }

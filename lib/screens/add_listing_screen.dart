@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gestionare_prod/models/listing.dart';
+import 'package:gestionare_prod/providers/items_list.dart';
 import 'package:gestionare_prod/providers/listings_providers.dart';
+import 'package:gestionare_prod/widgets/added_item.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -177,10 +179,16 @@ class _AddListingScreenState extends State<AddListingScreen> {
                       ),
                       // here will come the list of items
                       Container(
-                        color: Colors.green,
                         height: (deviceSize.height - kToolbarHeight) / 2,
                         // scrollable list of items
-                        // child: ListView.builder(itemBuilder: ),
+                        child: Consumer<ItemListProvider>(
+                          builder: (context, itemData, _) => ListView.builder(
+                            itemBuilder: (context, index) => AddedItem(
+                              itemInfo: itemData.itemsList[index],
+                            ),
+                            itemCount: itemData.itemsList.length,
+                          ),
+                        ),
                       ),
                       // TODO: insert sum money paid logic here -> this will update with the new changes (setState) when adding a new item
                       Padding(

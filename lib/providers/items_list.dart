@@ -10,6 +10,7 @@ class ItemListProvider with ChangeNotifier {
     return [..._itemsList];
   }
 
+// this method handles the inserting an Item in the listing to save + display the item there
   void addItemInList(Item currentItem) {
     _itemsList.insert(0, currentItem);
     notifyListeners();

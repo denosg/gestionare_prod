@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gestionare_prod/providers/items_list.dart';
 import 'package:gestionare_prod/screens/add_listing_screen.dart';
 import 'package:gestionare_prod/screens/listing_details_screen.dart';
 import 'package:provider/provider.dart';
@@ -22,16 +23,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.lightTheme,
-      themeMode: ThemeMode.system,
-      home: const ListingsOverviewScreen(),
-      routes: {
-        AddListingScreen.routeName: (context) => AddListingScreen(),
-        ListingDetailsScreen.routeName: (context) => ListingDetailsScreen(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ItemListProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.lightTheme,
+        themeMode: ThemeMode.system,
+        home: const ListingsOverviewScreen(),
+        routes: {
+          AddListingScreen.routeName: (context) => AddListingScreen(),
+          ListingDetailsScreen.routeName: (context) => ListingDetailsScreen(),
+        },
+      ),
     );
   }
 }
