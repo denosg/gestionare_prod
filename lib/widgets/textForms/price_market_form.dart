@@ -44,7 +44,7 @@ class _PriceMarketFormState extends State<PriceMarketForm> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 // gets the introduced string
-                onSaved: (enteredString) {
+                onChanged: (enteredString) {
                   if (enteredString != null) {
                     Item updatedItem = Item(
                       title: widget.tempItem.title,

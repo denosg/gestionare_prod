@@ -44,10 +44,10 @@ class _PricePaidFormState extends State<PricePaidForm> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 // gets the introduced string
-                onSaved: (enteredString) {
+                onChanged: (enteredString) {
                   if (enteredString != null) {
                     Item updatedItem = Item(
-                      title: enteredString,
+                      title: widget.tempItem.title,
                       photoUrl: widget.tempItem.photoUrl,
                       pricePaid: double.parse(enteredString),
                       priceMarket: widget.tempItem.priceMarket,
